@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const Country = mongoose.model('Country');
+// const Country = mongoose.model('Country');
 const City = mongoose.model('City');
 const Location = mongoose.model('Location');
 const Category = mongoose.model('Category');
@@ -61,18 +61,6 @@ router.post('/cities', async (req, res) => {
         const city = new City({ name, countryId: country._id });
         await city.save();
         res.send({ city });
-    } catch (err) {
-        res.status(422).send(err.message);
-    }
-})
-
-// Countries
-router.post('/countries', async (req, res) => {
-    const { name, code } = req.body
-    try {
-        const country = new Country({ name, code });
-        await country.save();
-        res.send({ country });
     } catch (err) {
         res.status(422).send(err.message);
     }
