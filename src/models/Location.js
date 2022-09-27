@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Location
 const locationSchema = new mongoose.Schema({
-    cityId: {
+    city: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City'
     },

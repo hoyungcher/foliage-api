@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // City
 const citySchema = new mongoose.Schema({
-    countryId: {
+    country: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Country'
     },
