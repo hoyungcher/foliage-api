@@ -14,9 +14,13 @@ const reportSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location'
     },
-    phenomenaId: {
+    phenomenonId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Phenomena'
+    },
+    creatorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 

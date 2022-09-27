@@ -7,7 +7,7 @@ const User = mongoose.model('User');
 const router = express.Router();
 
 // Sign up route
-router.post('/signup', async (req, res) => {
+router.post('/createaccount', async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = new User({ email, password });
@@ -21,7 +21,7 @@ router.post('/signup', async (req, res) => {
 });
 
 // Sign in route
-router.post('/signin', async (req, res) => {
+router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
         return res.status(422).send({ error: "Must provide email and password." })
