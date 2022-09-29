@@ -7,9 +7,11 @@ const phenomenonSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    categoryId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
+    category: {
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Category'
+        type: String,
+        enum: ['Birds', 'Blossoms', 'Marine Life', 'Leaves', 'Harvest']
     }
 })
 

@@ -13,23 +13,23 @@ const router = express.Router();
 // sample routes for setting up database
 
 // Categories
-router.post('/categories', async (req, res) => {
-    const { name } = req.body
-    try {
-        const category = new Category({ name });
-        await category.save();
-        res.send({ category });
-    } catch (err) {
-        res.status(422).send(err.message);
-    }
-})
+// router.post('/categories', async (req, res) => {
+//     const { name } = req.body
+//     try {
+//         const category = new Category({ name });
+//         await category.save();
+//         res.send({ category });
+//     } catch (err) {
+//         res.status(422).send(err.message);
+//     }
+// })
 
 // Phenomena
 router.post('/phenomena', async (req, res) => {
-    const { name, categoryName } = req.body
+    const { name, category } = req.body
     try {
-        const category = await Category.findOne({name: categoryName});
-        const phenomenon = new Phenomenon({ name, categoryId: category._id });
+        // const category = await Category.findOne({name: categoryName});
+        const phenomenon = new Phenomenon({ name, category });
         await phenomenon.save();
         res.send({ phenomenon });
     } catch (err) {

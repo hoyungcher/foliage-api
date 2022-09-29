@@ -2,7 +2,7 @@
 require('./models/User');
 require('./models/City');
 require('./models/Location');
-require('./models/Category');
+// require('./models/Category');
 require('./models/Phenomenon');
 require('./models/Report');
 
@@ -20,7 +20,7 @@ const requireAuth = require('./middleware/requireAuth');
 // Models
 const City = mongoose.model('City');
 const Location = mongoose.model('Location');
-const Category = mongoose.model('Category');
+// const Category = mongoose.model('Category');
 const Phenomenon = mongoose.model('Phenomenon');
 const Report = mongoose.model('Report');
 

@@ -11,7 +11,6 @@ router.use(requireAuth);
 router.get('/phenomena', async (req, res) => {
         const phenomena = await Phenomenon
             .find({})
-            .populate('categoryId');
         res.send(phenomena)
 
 });
