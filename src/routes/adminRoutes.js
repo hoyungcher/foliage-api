@@ -55,10 +55,9 @@ router.post('/locations', async (req, res) => {
 
 // Cities
 router.post('/cities', async (req, res) => {
-    const { name, countryName } = req.body
+    const { name, country } = req.body
     try {
-        const country = await Country.findOne({name: countryName});
-        const city = new City({ name, countryId: country._id });
+        const city = new City({ name, country });
         await city.save();
         res.send({ city });
     } catch (err) {

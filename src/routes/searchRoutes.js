@@ -10,7 +10,6 @@ router.use(requireAuth);
 
 router.get('/locationautocomplete', async (req, res) => {
     try {
-        console.log(req.query.name);
         let results;
         results = await Location.aggregate([
             {
@@ -40,7 +39,6 @@ router.get('/locationautocomplete', async (req, res) => {
         if (results) 
             {return res.send(results);}
     } catch (err) {
-        console.log(err);
         res.send(err.message);
     }
 });

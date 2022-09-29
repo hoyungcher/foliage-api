@@ -12,6 +12,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const reportRoutes = require('./routes/reportRoutes');
+const phenomenonRoutes = require('./routes/phenomenonRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const requireAuth = require('./middleware/requireAuth');
 
@@ -22,13 +23,13 @@ const Category = mongoose.model('Category');
 const Phenomenon = mongoose.model('Phenomenon');
 const Report = mongoose.model('Report');
 
-
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(reportRoutes);
+app.use(phenomenonRoutes);
 app.use(searchRoutes);
 
 // environment variables
@@ -45,8 +46,8 @@ mongoose.connection.on('error', err => {
     console.log('Error connecting to mongo', err);
 })
 
-app.get('/', requireAuth, (req, res) => {
-    res.send(`Your email: ${req.user.email}`);
+app.get('/test', (req, res) => {
+    res.status(200).send(`Your email: ${req.user.email}`);
 });
 
 app.listen(3000, () => {
