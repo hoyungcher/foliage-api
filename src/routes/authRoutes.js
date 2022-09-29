@@ -40,4 +40,8 @@ router.post('/login', async (req, res) => {
         return res.status(422).send({ error: 'Invalid password or email.'});
     }
 });
+
+router.get('/test', (req, res) => {
+    res.status(200).send("Success");
+});
 module.exports = router;

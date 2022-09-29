@@ -46,10 +46,6 @@ mongoose.connection.on('error', err => {
     console.log('Error connecting to mongo', err);
 })
 
-app.get('/test', (req, res) => {
-    res.status(200).send(`Your email: ${req.user.email}`);
-});
-
 app.listen(3000, () => {
     console.log("Listening on port 3000");
 });
