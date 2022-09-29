@@ -12,7 +12,7 @@ router.use(requireAuth);
 
 router.get('/locations/:locationId', async(req, res) => {
     const location = await Location
-        .find({ _id: req.params.locationId })
+        .findOne({ _id: req.params.locationId })
     const reports = await Report
         .find({ location: req.params.locationId })
         .sort({timestamp: -1})
