@@ -21,17 +21,13 @@ router.get('/reports', async(req, res) => {
 
 
 router.post('/reports', async (req, res) => {
-    const { description, timestamp, phenomenon, location } = req.body;
-    console.log(description);
-    console.log(timestamp);
-    console.log(phenomenon);
-    console.log(location);
+    const { description, timestamp, phenomenon, location, title } = req.body;
 
-    if (!timestamp || !phenomenon || !location) {
+    if (!timestamp || !phenomenon || !location || !title) {
         return res.status(422).send({ error: 'You must provide a phenomenon or location'});
     }
     try {
-        const report = new Report({ description, timestamp, phenomenon, location, creator: req.user._id });
+        const report = new Report({ description, timestamp, phenomenon, location, title, creator: req.user._id });
         await report.save();
         res.send(report);
 
