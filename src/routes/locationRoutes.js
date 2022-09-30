@@ -13,6 +13,7 @@ router.use(requireAuth);
 router.get('/locations/:locationId', async(req, res) => {
     const location = await Location
         .findOne({ _id: req.params.locationId })
+        .populate("city");
     const reports = await Report
         .find({ location: req.params.locationId })
         .sort({timestamp: -1})
