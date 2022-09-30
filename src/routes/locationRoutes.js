@@ -43,7 +43,7 @@ router.get('/locationautocomplete', async (req, res) => {
             {
                 $project: {
                     _id: 1,
-                    cityId: 1,
+                    city: 1,
                     name: 1,
                 }
             },

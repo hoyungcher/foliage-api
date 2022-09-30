@@ -2,7 +2,6 @@
 require('./models/User');
 require('./models/City');
 require('./models/Location');
-// require('./models/Category');
 require('./models/Phenomenon');
 require('./models/Report');
 
@@ -14,13 +13,11 @@ const adminRoutes = require('./routes/adminRoutes');
 const locationRoutes = require('./routes/locationRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 const phenomenonRoutes = require('./routes/phenomenonRoutes');
-const searchRoutes = require('./routes/searchRoutes');
 const requireAuth = require('./middleware/requireAuth');
 
 // Models
 const City = mongoose.model('City');
 const Location = mongoose.model('Location');
-// const Category = mongoose.model('Category');
 const Phenomenon = mongoose.model('Phenomenon');
 const Report = mongoose.model('Report');
 
@@ -32,7 +29,7 @@ app.use(adminRoutes);
 app.use(locationRoutes);
 app.use(reportRoutes);
 app.use(phenomenonRoutes);
-app.use(searchRoutes);
+// app.use(searchRoutes);
 
 // environment variables
 require('dotenv').config();

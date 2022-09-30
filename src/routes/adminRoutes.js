@@ -1,10 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// const Country = mongoose.model('Country');
 const City = mongoose.model('City');
 const Location = mongoose.model('Location');
-const Category = mongoose.model('Category');
 const Phenomenon = mongoose.model('Phenomenon');
 const Report = mongoose.model('Report');
 
