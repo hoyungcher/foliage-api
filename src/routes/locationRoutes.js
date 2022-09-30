@@ -23,4 +23,42 @@ router.get('/locations/:locationId', async(req, res) => {
     res.send({ location, reports });
 })
 
+router.get('/locationautocomplete', async (req, res) => {
+    try {
+        let results;
+        results = await Location.aggregate([
+            {
+                $search: {
+                    index: "location-autocomplete",
+                    autocomplete: {
+                        query: req.query.name,
+                        path: "name",
+                        fuzzy: {
+                            maxEdits: 1,
+                        },
+                        tokenOrder: "sequential",
+                    }
+                }
+            },
+            {
+                $project: {
+                    _id: 1,
+                    cityId: 1,
+                    name: 1,
+                }
+            },
+            {
+                $limit: 10,
+            },
+        ]);
+        if (results) {
+            results = await Location.populate(results, {path: "city"}); 
+            return res.send(results);
+        }
+    } catch (err) {
+        res.send(err.message);
+    }
+
+});
+
 module.exports = router;

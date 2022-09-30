@@ -10,25 +10,17 @@ const Report = mongoose.model('Report');
 
 const router = express.Router();
 
-// sample routes for setting up database
-
-// Categories
-// router.post('/categories', async (req, res) => {
-//     const { name } = req.body
-//     try {
-//         const category = new Category({ name });
-//         await category.save();
-//         res.send({ category });
-//     } catch (err) {
-//         res.status(422).send(err.message);
-//     }
-// })
+// sample routes for adding new fields to database
 
 // Phenomena
+// const samplePhenomenon = {
+//     "name": "Cherry Blossoms",
+//     "category": "Blossoms"
+// }
+
 router.post('/phenomena', async (req, res) => {
     const { name, category } = req.body
     try {
-        // const category = await Category.findOne({name: categoryName});
         const phenomenon = new Phenomenon({ name, category });
         await phenomenon.save();
         res.send({ phenomenon });
@@ -38,13 +30,22 @@ router.post('/phenomena', async (req, res) => {
 })
 
 // Locations
+// const sampleLocation = {
+//     "name": "Victoria Park",
+//     "coordinates": {
+//         "latitude": 51.102,
+//         "longitude": 0.001
+//     },
+//     "city": "London"
+// }
+
 router.post('/locations', async (req, res) => {
-    const { name, coordinates, cityName } = req.body
+    const { name, coordinates, city } = req.body
     try {
-        const city = await City.findOne({name: cityName});
+        const city = await City.findOne({name: city});
         const location = new Location({ 
             name, 
-            cityId: city._id,
+            city: city._id,
             coordinates});
         await location.save();
         res.send({ location });
@@ -54,6 +55,11 @@ router.post('/locations', async (req, res) => {
 })
 
 // Cities
+// const sampleCity = {
+//     "name": "London",
+//     "country": "United Kingdom of Great Britain and Northern Ireland"
+// }
+
 router.post('/cities', async (req, res) => {
     const { name, country } = req.body
     try {

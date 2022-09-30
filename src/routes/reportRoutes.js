@@ -21,6 +21,7 @@ router.get('/reports', async(req, res) => {
 
 
 router.post('/reports', async (req, res) => {
+    // location and phenomenon are ObjectIds
     const { description, timestamp, phenomenon, location, title } = req.body;
 
     if (!timestamp || !phenomenon || !location || !title) {
