@@ -10,6 +10,18 @@ const router = express.Router();
 
 router.use(requireAuth);
 
+
+router.get('/reports/explore', async(req, res) => {
+    const reports = await Report
+        .find({})
+        .sort({timestamp: -1})
+        .limit(20)
+        .populate("location")
+        .populate("phenomenon");
+    
+    res.send(reports);
+})
+
 router.get('/reports', async(req, res) => {
     const reports = await Report
         .find({ creatorId: req.user._id })
