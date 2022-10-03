@@ -10,10 +10,21 @@ const router = express.Router();
 
 router.use(requireAuth);
 
+// Report page endpoint
+router.get('reports/:reportId', async(req, res) => {
+    const report = await Report
+        .find({ _id: req.params.reportId })
+        .populate("location")
+        .populate("phenomenon");
+    
+        res.send(report);
+})
 
+
+// Explore page endpoint
 router.get('/reports/explore', async(req, res) => {
     const reports = await Report
-        .find({})
+        .findOne({})
         .sort({timestamp: -1})
         .limit(20)
         .populate("location")
@@ -22,6 +33,7 @@ router.get('/reports/explore', async(req, res) => {
     res.send(reports);
 })
 
+// User reports page endpoint
 router.get('/reports', async(req, res) => {
     const reports = await Report
         .find({ creatorId: req.user._id })
@@ -31,7 +43,7 @@ router.get('/reports', async(req, res) => {
     res.send(reports);
 })
 
-
+// Create report page endpoint
 router.post('/reports', async (req, res) => {
     // location and phenomenon are ObjectIds
     const { description, timestamp, phenomenon, location, title } = req.body;
