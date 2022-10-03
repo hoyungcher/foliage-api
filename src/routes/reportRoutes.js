@@ -13,7 +13,7 @@ router.use(requireAuth);
 // Report page endpoint
 router.get('reports/:reportId', async(req, res) => {
     const report = await Report
-        .find({ _id: req.params.reportId })
+        .findOne({ _id: req.params.reportId })
         .populate("location")
         .populate("phenomenon");
     
@@ -24,7 +24,7 @@ router.get('reports/:reportId', async(req, res) => {
 // Explore page endpoint
 router.get('/reports/explore', async(req, res) => {
     const reports = await Report
-        .findOne({})
+        .find({})
         .sort({timestamp: -1})
         .limit(20)
         .populate("location")
