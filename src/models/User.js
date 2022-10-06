@@ -10,6 +10,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+    // favouriteLocations: [{
+    //     location: {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'Location'
+    //     }
+    // }], 
+    // favouritePhenomena: [{
+    //     phenomenon: {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'Phenomenon'
+    //     }
+    // }], 
+    
 })
 
 // salt and hash password before being stored
